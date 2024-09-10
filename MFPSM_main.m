@@ -9,7 +9,7 @@ addpath([path2Libraries,'/Utilities']);
 
 %% User input parameters***************************************************
 %Please specify date and time as [year month day hour minute second]
-userInput.dateTime = [2014 01 02 10 00 00]; 
+userInput.dateTime = [2013 10 05 12 25 00]; 
 
 %Please choose data length for simulation\n (300s, 600s, or 900s)
 userInput.length = 300;
@@ -21,16 +21,16 @@ userInput.RXPos = [0.3876 1.9942 59.6780]';
 %    V1 = east-west velocity on the earth arc (m/s, eastward +)
 %    V2 = north-south velocity on the earch arc (m/s, northward +)
 %    V3 = up-down velocity (m/s, up +)
-userInput.RXVel = [100 0 0]';
+userInput.RXVel = [-150, 0, 0]';
 
 % Please specify satellite PRN (0~32)
-userInput.PRN = 12;
+userInput.PRN = 24;
 
 % Plotting figures of the simulated propagation geometry and scintillation intensity and phase? yes-1/no-0
 userInput.plotSign = 1;
 
 % Please specify how many GPS frequencies to simulate (1- GPS L1 only; 2 - GPS L1 and L2; 3 - GPS L1,L2, and L5)
-userInput.frequencyNo = 3;
+userInput.frequencyNo = 1;
 
 % Please specify the S4 index and tau0 for the ground observed scintillation 
 userInput.S4 = 0.8; % S4 index (0~1)
@@ -61,4 +61,4 @@ if(sum(userInput.RXVel)~=0)
 end
 
 %% Generate scintillation signal field realizations
-[Scin_psi, Scin_amp, Scin_phi] = RunGenScintFieldRealization(userInput,satGEOM,U_mapped,rhoFVeff_mapped);
+[Scin_psi,~,~,phase0,rhoFOveff] = RunGenScintFieldRealization(userInput,satGEOM,U_mapped,rhoFVeff_mapped);

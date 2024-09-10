@@ -40,7 +40,7 @@ nsamps=length(phase0);
 y=linex(1:nsamps,1,nsamps,phase0(1),phase0(nsamps));
 phase0=phase0-y;
 
-%Forward propagation
+%Forward propagation 
 psi=exp(1i*phase0);
 pfac=fftshift(exp(-1i*(mu).^2/2));   %Parabolic approximation 
 psi_hat=fft(psi);

@@ -1,4 +1,4 @@
-function [Scin_psi, Scin_amp, Scin_phi] = RunGenScintFieldRealization(userInput,satGEOM,U_L1_ori,rhoFVeff_L1_ori)
+function [Scin_psi,Scin_amp,Scin_phi,phase0,rhoFOveff] = RunGenScintFieldRealization(userInput,satGEOM,U_L1_ori,rhoFVeff_L1_ori)
 %Usage: [Scin_psi, Scin_amp, Scin_phi] = RunGenScintFieldRealization(userInput,satGEOM,U_L1_ori)
 %This program uses IPE parameters to
 %generate L1, L2, and L5 complex scintillation
@@ -60,7 +60,7 @@ for nfreq=1:userInput.frequencyNo
         else
             rhoFOveff(1) = rhoFVeff_L1_ori;
         end
-        [Scin_psi(1,:),~,fracMom]=GenScintFieldRealization(U(1),p1,p2,mu0(1),rhoFOveff(1),Dt,nfft,SEED);  %% Joy
+        [Scin_psi(1,:),phase0,fracMom]=GenScintFieldRealization(U(1),p1,p2,mu0(1),rhoFOveff(1),Dt,nfft,SEED);  %% Joy
         S4(1)=sqrt(fracMom(2)-1);
         [~, tau0(1)] = ParaMappingInv(U(1),rhoFOveff(1));
     else
