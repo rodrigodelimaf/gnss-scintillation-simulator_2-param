@@ -12,7 +12,7 @@ addpath([path2Libraries,'/Utilities']);
 userInput.dateTime = [2014 01 02 10 00 00]; 
 
 %Please choose data length for simulation\n (300s, 600s, or 900s)
-userInput.length = 300;
+userInput.length = 0;
 
 % Please specify receiver position as [lat(rad), lon(rad), height(m)\n]'
 userInput.RXPos = [0.3876 1.9942 59.6780]';
@@ -40,22 +40,20 @@ userInput.tau0 = 0.7; % Signal intensity decorrelation time in sec.
 [U_mapped,rhoFVeff_mapped] = ParaMapping(userInput);
 
 %% Calculate the propagation geometry**************************************
-if(sum(userInput.RXVel)~=0)
-    while true
-        try
-            satGEOM = RunPropGeomCalc(userInput,rhoFVeff_mapped);
-            break;
-        catch ME
-            if userInput.PRN == 32
-                rethrow(ME);
-            else
-                userInput.PRN = userInput.PRN + 1;
-                clc;
-                warning(['The provided receiver position, UTC time, and satellite PRN ' ...
-                         'lead to a bad geometry for Vdrift estimation.\n\n' ...
-                         'The input PRN has been changed to %s and the the propagation ' ...
-                         'geometry is computed again.'], num2str(userInput.PRN));
-            end
+while true
+    try
+        satGEOM = RunPropGeomCalc(userInput,rhoFVeff_mapped);
+        break;
+    catch ME
+        if userInput.PRN == 32
+            rethrow(ME);
+        else
+            userInput.PRN = userInput.PRN + 1;
+            clc;
+            warning(['The provided receiver position, UTC time, and satellite PRN ' ...
+                     'lead to a bad geometry for Vdrift estimation.\n\n' ...
+                     'The input PRN has been changed to %s and the the propagation ' ...
+                     'geometry is computed again.'], num2str(userInput.PRN));
         end
     end
 end
