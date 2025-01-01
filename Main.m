@@ -12,7 +12,7 @@ addpath([path2Libraries,'/Utilities']);
 userInput.dateTime = [2014 01 02 10 00 00]; 
 
 %Please choose data length for simulation\n (300s, 600s, or 900s)
-userInput.length = 0;
+userInput.length = 300;
 
 % Please specify receiver position as [lat(rad), lon(rad), height(m)\n]'
 userInput.RXPos = [0.3876 1.9942 59.6780]';
@@ -27,7 +27,7 @@ userInput.RXVel = [100 0 0]';
 userInput.PRN = 12;
 
 % Plotting figures of the simulated propagation geometry and scintillation intensity and phase? yes-1/no-0
-userInput.plotSign = 1;
+userInput.plotSign = 0;
 
 % Please specify how many GPS frequencies to simulate (1- GPS L1 only; 2 - GPS L1 and L2; 3 - GPS L1,L2, and L5)
 userInput.frequencyNo = 3;
@@ -59,4 +59,4 @@ while true
 end
 
 %% Generate scintillation signal field realizations
-[Scin_psi, Scin_amp, Scin_phi] = RunGenScintFieldRealization(userInput,satGEOM,U_mapped,rhoFVeff_mapped);
+[Scin_psi, phase_screen_realization] = RunGenScintFieldRealization(userInput,satGEOM,U_mapped,rhoFVeff_mapped);

@@ -16,7 +16,6 @@ function       [psi,phase0,fracMom]=...
 %Note: S4 = sqrt(fracMom(2)-1)
 %fDop      =Doppler frequency range
 %mu        =normalizae frequency
-%
 
 %Doppler sampling
 fDop=(-nfft/2:nfft/2-1)/(nfft*Dt); 
