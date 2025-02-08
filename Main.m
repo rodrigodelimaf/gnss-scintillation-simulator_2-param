@@ -21,13 +21,13 @@ userInput.RXPos = [0.3876 1.9942 59.6780]';
 %    V1 = east-west velocity on the earth arc (m/s, eastward +)
 %    V2 = north-south velocity on the earch arc (m/s, northward +)
 %    V3 = up-down velocity (m/s, up +)
-userInput.RXVel = [100 0 0]';
+userInput.RXVel = [10 0 0]';
 
 % Please specify satellite PRN (0~32)
-userInput.PRN = 12;
+userInput.PRN = 18;
 
 % Plotting figures of the simulated propagation geometry and scintillation intensity and phase? yes-1/no-0
-userInput.plotSign = 1;
+userInput.plotSign = 0;
 
 % Please specify how many GPS frequencies to simulate (1- GPS L1 only; 2 - GPS L1 and L2; 3 - GPS L1,L2, and L5)
 userInput.frequencyNo = 3;
